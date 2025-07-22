@@ -1,7 +1,7 @@
 /* Write your T-SQL query statement below */
 select 
     r.contest_id 
-    ,cast((cast(count(distinct r.user_id) as decimal(10,2))/cast((select count(distinct u.user_id) from Users u) as decimal(10,2))*100) as decimal(10,2)) as percentage
+    ,round((count(distinct r.user_id)*1.00/(select count(distinct u.user_id) from Users u)*1.00)*100, 2) as percentage
 from Register r
 join Users u
     on u.user_id=r.user_id
